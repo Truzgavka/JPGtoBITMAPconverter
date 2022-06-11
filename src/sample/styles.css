@@ -1,0 +1,5 @@
+.button {
+    -fx-padding: 10px;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px;
+}
