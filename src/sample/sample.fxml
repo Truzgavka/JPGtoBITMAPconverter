@@ -3,6 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller" stylesheets="@styles.css">
    <top>
       <MenuBar>
@@ -11,6 +13,13 @@
          </Menu>
       </MenuBar>
    </top>
+   <center>
+      <ImageView fx:id="imageToConvert" fitWidth="400" fitHeight="400" preserveRatio="true">
+         <image>
+            <Image url="@img/ford_flow.png"/>
+         </image>
+      </ImageView>
+   </center>
    <right>
       <VBox alignment="TOP_LEFT" spacing="50" style="-fx-padding: 50px">
          <Button text="Select file" onAction="#showSelectWindow"/>
