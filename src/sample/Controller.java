@@ -1,7 +1,10 @@
 package sample;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -16,9 +19,24 @@ public class Controller {
     @FXML
     private BorderPane mainBorderPane;
     @FXML
-    private ImageView imageToConvert;
+    private ImageView imageView;
+    @FXML
+    private Slider slider;
+
+    private ImageConverter imageConverter;
+    private int sliderValue;
 
     public void initialize() {
+        slider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                sliderValue = t1.intValue();
+                imageConverter.convertImage(sliderValue);
+
+                System.out.println(sliderValue);
+                imageView.setImage(imageConverter.getCurrentImage());
+            }
+        });
 
     }
 
@@ -34,9 +52,10 @@ public class Controller {
                 img = ImageIO.read(selectedFile);
             } catch (IOException e) {
             }
-            imageToConvert.setImage(SwingFXUtils.toFXImage(img, null));
+            //inizjalizacja i użycie ImageConvertera
+            imageConverter = new ImageConverter(img);
+            imageView.setImage(imageConverter.getCurrentImage());
         }
-
-
     }
+
 }

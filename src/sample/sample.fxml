@@ -14,7 +14,7 @@
       </MenuBar>
    </top>
    <center>
-      <ImageView fx:id="imageToConvert" fitWidth="400" fitHeight="400" preserveRatio="true">
+      <ImageView fx:id="imageView" fitWidth="400" fitHeight="400" preserveRatio="true">
          <image>
             <Image url="@img/ford_flow.png"/>
          </image>
@@ -27,6 +27,6 @@
       </VBox>
    </right>
    <bottom>
-      <Slider min="0" max="255" showTickLabels="true" style="-fx-padding: 10px"></Slider>
+      <Slider fx:id="slider" showTickLabels="true" min="0" max="255" style="-fx-padding: 10px"></Slider>
    </bottom>
 </BorderPane>
