@@ -37,10 +37,9 @@ public class Controller {
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 if(imageView.getImage() != null) {
                     sliderValue = t1.intValue();
-                    imageConverter.convertImage(sliderValue);
 
                     System.out.println(sliderValue);
-                    imageView.setImage(imageConverter.getCurrentImage());
+                    imageView.setImage(imageConverter.convertImage(sliderValue));
                 }
             }
         });
