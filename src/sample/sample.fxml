@@ -9,16 +9,12 @@
    <top>
       <MenuBar>
          <Menu text="File">
-            <MenuItem text="Exit"/>
+            <MenuItem text="Exit" onAction="#exitApplication"/>
          </Menu>
       </MenuBar>
    </top>
    <center>
-      <ImageView fx:id="imageView" fitWidth="400" fitHeight="400" preserveRatio="true">
-         <image>
-            <Image url="@img/ford_flow.png"/>
-         </image>
-      </ImageView>
+      <ImageView fx:id="imageView" fitWidth="400" fitHeight="400" preserveRatio="true"/>
    </center>
    <right>
       <VBox alignment="TOP_LEFT" spacing="50" style="-fx-padding: 50px">
@@ -27,6 +23,6 @@
       </VBox>
    </right>
    <bottom>
-      <Slider fx:id="slider" showTickLabels="true" min="0" max="255" style="-fx-padding: 10px"></Slider>
+      <Slider fx:id="slider" showTickLabels="true" min="0" max="255" style="-fx-padding: 10px"/>
    </bottom>
 </BorderPane>
