@@ -55,7 +55,7 @@ public class ImageConverter {
         return SwingFXUtils.toFXImage(bufferedImage, null);
     }
 
-    //load
+    public void saveImage() {
 
-    //store
+    }
 }

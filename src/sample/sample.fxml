@@ -19,7 +19,7 @@
    <right>
       <VBox alignment="TOP_LEFT" spacing="50" style="-fx-padding: 50px">
          <Button text="Select file" onAction="#showSelectWindow"/>
-         <Button text="Save file"/>
+         <Button text="Save file" onAction="#saveImage"/>
       </VBox>
    </right>
    <bottom>

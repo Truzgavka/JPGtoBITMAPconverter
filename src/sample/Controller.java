@@ -76,4 +76,19 @@ public class Controller {
             System.exit(0);
         }
     }
+
+    @FXML
+    public void saveImage() {
+        FileChooser fileChooser = new FileChooser();
+//        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG, PNG","*.jpg, *.png"));
+        File selectedFile = fileChooser.showSaveDialog(mainBorderPane.getScene().getWindow());
+        if(selectedFile != null) {
+            try {
+                ImageIO.write(SwingFXUtils.fromFXImage(imageView.getImage(), null), "png", selectedFile);
+            } catch (IOException e) {
+
+            }
+
+        }
+    }
 }
