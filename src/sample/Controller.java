@@ -2,11 +2,9 @@ package sample;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -37,8 +35,6 @@ public class Controller {
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 if(imageView.getImage() != null) {
                     sliderValue = t1.intValue();
-
-                    System.out.println(sliderValue);
                     imageView.setImage(imageConverter.convertImage(sliderValue));
                 }
             }
@@ -82,12 +78,10 @@ public class Controller {
         FileChooser fileChooser = new FileChooser();
 //        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG, PNG","*.jpg, *.png"));
         File selectedFile = fileChooser.showSaveDialog(mainBorderPane.getScene().getWindow());
-        if(selectedFile != null) {
-            try {
-                ImageIO.write(SwingFXUtils.fromFXImage(imageView.getImage(), null), "png", selectedFile);
-            } catch (IOException e) {
-
-            }
+        try {
+            imageConverter.saveImage(selectedFile);
+        } catch (IOException e) {
+            System.out.println("dupa");
 
         }
     }
