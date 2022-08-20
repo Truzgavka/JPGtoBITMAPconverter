@@ -3,12 +3,17 @@ package sample;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -24,6 +29,10 @@ public class Controller {
     private ImageView imageView;
     @FXML
     private Slider slider;
+    @FXML
+    private MenuItem reset;
+    @FXML
+    private MenuItem showOriginal;
 
     private ImageConverter imageConverter;
     private int sliderValue;
@@ -56,8 +65,11 @@ public class Controller {
             }
             //inizjalizacja i użycie ImageConvertera
             imageConverter = new ImageConverter(img);
-            imageView.setImage(imageConverter.getCurrentImage());
             slider.setValue(0.0);
+            imageView.setImage(imageConverter.getCurrentImage());
+
+            showOriginal.setDisable(false);
+            reset.setDisable(false);
         }
     }
 
@@ -71,6 +83,35 @@ public class Controller {
         if(result.isPresent() && result.get() == ButtonType.OK) {
             System.exit(0);
         }
+    }
+
+    @FXML
+    public void resetImage() {
+        slider.setValue(0.0);
+        imageView.setImage(imageConverter.getOriginalImage());
+    }
+
+    @FXML
+    public void showOriginal() {
+        Stage originalImageStage = new Stage();
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("originalImage.fxml"));
+
+        try {
+            Parent root = fxmlLoader.load();
+            originalImageStage.initOwner(mainBorderPane.getScene().getWindow());
+            originalImageStage.setScene(new Scene(root, 500, 500));
+            originalImageStage.show();
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        OriginalImageController originalImageController = fxmlLoader.getController();
+        originalImageController.setImageView(imageConverter.getOriginalImage());
+
+        showOriginal.setDisable(true);
     }
 
     @FXML

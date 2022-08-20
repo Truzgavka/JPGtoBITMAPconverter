@@ -9,6 +9,8 @@
    <top>
       <MenuBar>
          <Menu text="File">
+            <MenuItem fx:id="showOriginal" text="Show original" onAction="#showOriginal" disable="true"/>
+            <MenuItem fx:id="reset" text="Reset" onAction="#resetImage" disable="true"/>
             <MenuItem text="Exit" onAction="#exitApplication"/>
          </Menu>
       </MenuBar>

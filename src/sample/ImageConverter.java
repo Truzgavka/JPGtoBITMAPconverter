@@ -22,9 +22,13 @@ public class ImageConverter {
         return currentImage;
     }
 
+    protected Image getOriginalImage() {
+        return originalImage;
+    }
+
     protected Image convertImage(int sliderValue) {
 
-        //przejsc na tylko image z bufferedimage
+        //TODO przejsc na tylko image z bufferedimage
         BufferedImage image = SwingFXUtils.fromFXImage(originalImage, null);
 
         int width = image.getWidth();
