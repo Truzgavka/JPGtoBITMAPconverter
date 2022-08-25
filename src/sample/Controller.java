@@ -39,11 +39,11 @@ public class Controller {
 
     public void initialize() {
 
-        slider.valueProperty().addListener(new ChangeListener<Number>() {
+        slider.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
             @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
                 if(imageView.getImage() != null) {
-                    sliderValue = t1.intValue();
+                    sliderValue = (int) slider.getValue();
                     imageView.setImage(imageConverter.convertImage(sliderValue));
                 }
             }
