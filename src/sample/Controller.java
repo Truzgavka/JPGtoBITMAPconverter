@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -33,6 +30,8 @@ public class Controller {
     private MenuItem reset;
     @FXML
     private MenuItem showOriginal;
+    @FXML
+    private Button saveFile;
 
     private ImageConverter imageConverter;
     private int sliderValue;
@@ -70,6 +69,8 @@ public class Controller {
 
             showOriginal.setDisable(false);
             reset.setDisable(false);
+            saveFile.setDisable(false);
+            slider.setDisable(false);
         }
     }
 
@@ -117,7 +118,7 @@ public class Controller {
     @FXML
     public void saveImage() {
         FileChooser fileChooser = new FileChooser();
-//        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG, PNG","*.jpg, *.png"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("BMP","*.bmp"));
         File selectedFile = fileChooser.showSaveDialog(mainBorderPane.getScene().getWindow());
         try {
             imageConverter.saveImage(selectedFile);

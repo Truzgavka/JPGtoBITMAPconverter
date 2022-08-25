@@ -21,10 +21,10 @@
    <right>
       <VBox alignment="TOP_LEFT" spacing="50" style="-fx-padding: 50px">
          <Button text="Select file" onAction="#showSelectWindow"/>
-         <Button text="Save file" onAction="#saveImage"/>
+         <Button fx:id="saveFile" text="Save file" onAction="#saveImage" disable="true"/>
       </VBox>
    </right>
    <bottom>
-      <Slider fx:id="slider" showTickLabels="true" min="0" max="255" style="-fx-padding: 10px"/>
+      <Slider fx:id="slider" showTickLabels="true" min="0" max="255" style="-fx-padding: 10px" disable="true"/>
    </bottom>
 </BorderPane>
