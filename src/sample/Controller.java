@@ -54,7 +54,7 @@ public class Controller {
     @FXML
     public void showSelectWindow() {
         FileChooser fileChooser = new FileChooser();
-//        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG, PNG","*.jpg, *.png"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG, PNG","*.jpg", "*.png"));
         File selectedFile = fileChooser.showOpenDialog(mainBorderPane.getScene().getWindow());
 
         if(selectedFile != null) {
