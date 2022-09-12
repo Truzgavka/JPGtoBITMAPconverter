@@ -17,7 +17,6 @@ import javafx.stage.WindowEvent;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
-import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 public class Controller {
@@ -35,8 +34,7 @@ public class Controller {
     @FXML
     private Button saveFile;
 
-    private ImageConverter imageConverter;
-    private int sliderValue;
+    private ImageManipulator imageManipulator;
 
     public void initialize() {
 
@@ -44,8 +42,7 @@ public class Controller {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
                 if(imageView.getImage() != null) {
-                    sliderValue = (int) slider.getValue();
-                    imageView.setImage(imageConverter.convertImage(sliderValue));
+                    imageView.setImage(imageManipulator.convertImage((int) slider.getValue()));
                 }
             }
         });
@@ -59,15 +56,14 @@ public class Controller {
         File selectedFile = fileChooser.showOpenDialog(mainBorderPane.getScene().getWindow());
 
         if(selectedFile != null) {
-            BufferedImage img = null;
             try {
-                img = ImageIO.read(selectedFile);
+                //inizjalizacja i użycie ImageConvertera
+                imageManipulator = new ImageManipulator(ImageIO.read(selectedFile));
+                slider.setValue(0.0);
+                imageView.setImage(imageManipulator.getCurrentImage());
             } catch (IOException e) {
+                System.out.println(e.getMessage());
             }
-            //inizjalizacja i użycie ImageConvertera
-            imageConverter = new ImageConverter(img);
-            slider.setValue(0.0);
-            imageView.setImage(imageConverter.getCurrentImage());
 
             showOriginal.setDisable(false);
             reset.setDisable(false);
@@ -91,7 +87,7 @@ public class Controller {
     @FXML
     public void resetImage() {
         slider.setValue(0.0);
-        imageView.setImage(imageConverter.getOriginalImage());
+        imageView.setImage(imageManipulator.getOriginalImage());
     }
 
     @FXML
@@ -111,7 +107,7 @@ public class Controller {
         }
 
         OriginalImageController originalImageController = fxmlLoader.getController();
-        originalImageController.setImageView(imageConverter.getOriginalImage());
+        originalImageController.setImageView(imageManipulator.getOriginalImage());
 
         showOriginal.setDisable(true);
         originalImageStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -128,10 +124,9 @@ public class Controller {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("BMP","*.bmp"));
         File selectedFile = fileChooser.showSaveDialog(mainBorderPane.getScene().getWindow());
         try {
-            imageConverter.saveImage(selectedFile);
+            imageManipulator.saveImage(selectedFile);
         } catch (IOException e) {
-            System.out.println("dupa");
-
+            System.out.println(e.getMessage());
         }
     }
 }
