@@ -95,7 +95,7 @@ public class Controller {
         Stage originalImageStage = new Stage();
 
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("originalImage.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/originalImage.fxml"));
 
         try {
             Parent root = fxmlLoader.load();
