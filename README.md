@@ -1,5 +1,5 @@
 # JPGtoBITMAPconverter
-Script that make JPG bitmap (only 0,0,0 and 255,255,255 colors) from JPG/'other formats' picture. Configurable threshold. Editable in real time.
+Script that creates bitmap -BMP format - (only 0,0,0 and 255,255,255 colors) from JPG/'other formats' picture. Configurable threshold. Editable in real time.
 
 Main function:
 1. Select image
